@@ -5,6 +5,21 @@ const passwordEncrypt = require("../helpers/passwordEncrypt");
 
 module.exports = {
   login: async (req, res) => {
+        /*
+             #swagger.tags = ['Authentications']
+              #swagger.summary = 'Login'
+               #swagger.description = 'Login with username and password'
+                #swagger.parameters['body'] = {
+                in: 'body',
+                required: true,
+                schema: {
+                    username: 'test',
+                    password: '1234'
+                }
+            }
+             
+        
+        */
     const { username, email, password } = req.body;
 
     if (!((username || email) && password)) {
@@ -23,34 +38,36 @@ module.exports = {
     }
 
     let tokenData = await Token.findOne({ user_id: user._id });
-   
-    if(!tokenData) tokenData = await Token.create({user_id:user._id, token: passwordEncrypt( user._id + Date.now()) })
 
+    if (!tokenData)
+      tokenData = await Token.create({
+        user_id: user._id,
+        token: passwordEncrypt(user._id + Date.now()),
+      });
 
     res.send({
       key: tokenData.token,
-      user
+      user,
     });
   },
 
+  logout: async (req, res) => {
+    /*
+             #swagger.tags = ['Authentications']
+              #swagger.summary = "Logout"
+            #swagger.description = 'Delete token key.'
+          
+        */
 
-  logout: async (req,res) => {
+    const auth = req?.headers?.authorization || null;
 
-    
-    const auth = req?.headers?.authorization || null
+    const token = auth ? auth.split(" ")[1] : null;
 
-    const  token = auth ? auth.split(' ')[1] : null
+    if (token) await Token.deleteOne({ token });
 
-
-    if(token) await Token.deleteOne({token})
-      
-    
     res.send({
-      error:false,
-      message: 'User loged out'
-    })
-
-  }
-
-
+      error: false,
+      message: "User loged out",
+    });
+  },
 };

@@ -8,6 +8,19 @@ const Blog = require("../models/blog");
 
 module.exports = {
   create: async (req, res) => {
+     /*
+             #swagger.tags = ['Likes']
+             #swagger.summary = "Create Likes"
+            #swagger.description = "Look to <b>'Models/Like'</b> for parameters."
+             #swagger.parameters['body'] = {
+                in: 'body',
+                required: 'true',
+                schema: {
+                    $ref: '#/definitions/Like'
+                }
+            }
+        
+        */
     
     req.body.user_id = req.user._id;
     req.body.post_id = req.params.id;

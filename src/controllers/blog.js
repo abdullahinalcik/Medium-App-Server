@@ -10,6 +10,19 @@ const Like = require("../models/like");
 
 module.exports = {
   list: async (req, res) => {
+        /*
+             #swagger.tags = ['Blogs']
+             #swagger.summary = "List Blogs"
+            #swagger.description = `
+                You can send query with endpoint for search[], sort[], page and limit.
+                <ul> Examples:
+                    <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>
+                    <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>
+                    <li>URL/?<b>page=2&limit=1</b></li>
+                </ul>
+            `
+        
+        */
 
     let filters = {};
 
@@ -26,6 +39,19 @@ module.exports = {
   },
   
   create: async (req, res) => {
+      /*
+             #swagger.tags = ['Blogs']
+               #swagger.summary = "Create Blog"
+            #swagger.description = "Look to <b>'Models/Blog'</b> for parameters."
+             #swagger.parameters['body'] = {
+                in: 'body',
+                required: 'true',
+                schema: {
+                    $ref: '#/definitions/Blog'
+                }
+            }
+        
+        */
 
     req.body.author = req.user.username;
 
@@ -36,6 +62,16 @@ module.exports = {
     });
   },
   read: async (req, res) => {
+
+      /*
+             #swagger.tags = ['Blogs']
+             #swagger.summary = "Get Single Blog"
+        
+        */
+
+
+
+
     /* 
         const mongoose = require('mongoose');
 
@@ -103,6 +139,19 @@ app.get('/blogs/:id', async (req, res) => {
     res.status(200).send(data);
   },
   update: async (req, res) => {
+      /*
+             #swagger.tags = ['Blogs']
+              #swagger.summary = "Update Blog"
+            #swagger.parameters['body'] = {
+                in: 'body',
+                required: true,
+                schema: {
+                }
+            }
+        
+        */
+
+
     const data = await Blog.updateOne({ _id: req.params.id }, req.body);
     res.status(202).send({
       error: false,
@@ -111,6 +160,13 @@ app.get('/blogs/:id', async (req, res) => {
     });
   },
   delete: async (req, res) => {
+
+  /*
+             #swagger.tags = ['Blogs']
+             #swagger.summary = "Delete Blog"
+        
+        */
+
     const blog = await Blog.findOne({ _id: req.params.id });
 
     const author = blog?.author;

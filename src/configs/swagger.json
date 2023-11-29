@@ -30,7 +30,11 @@
   "paths": {
     "/users/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "summary": "List Users",
+        "description": "\r  You can send query with endpoint for search[], sort[], page and limit.\r  <ul> Examples:\r   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>\r   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>\r   <li>URL/?<b>page=2&limit=1</b></li>\r  </ul>\r  ",
         "responses": {
           "200": {
             "description": "OK"
@@ -40,7 +44,21 @@
     },
     "/users/register": {
       "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Create User",
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -50,6 +68,10 @@
     },
     "/users/{id}": {
       "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Get Single User",
         "description": "",
         "parameters": [
           {
@@ -66,6 +88,9 @@
         }
       },
       "put": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -73,6 +98,14 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
           }
         ],
         "responses": {
@@ -82,6 +115,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Delete User",
         "description": "",
         "parameters": [
           {
@@ -101,6 +138,9 @@
         }
       },
       "patch": {
+        "tags": [
+          "Users"
+        ],
         "description": "",
         "parameters": [
           {
@@ -108,6 +148,14 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
           }
         ],
         "responses": {
@@ -119,22 +167,26 @@
     },
     "/users/auth/login": {
       "post": {
-        "description": "",
+        "tags": [
+          "Authentications"
+        ],
+        "summary": "Login",
+        "description": "Login with username and password",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
               "properties": {
                 "username": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "test"
                 },
                 "password": {
-                  "example": "any"
+                  "type": "string",
+                  "example": "1234"
                 }
               }
             }
@@ -149,7 +201,11 @@
     },
     "/users/auth/logout": {
       "post": {
-        "description": "",
+        "tags": [
+          "Authentications"
+        ],
+        "summary": "Logout",
+        "description": "Delete token key.",
         "responses": {
           "200": {
             "description": "OK"
@@ -159,7 +215,11 @@
     },
     "/api/categories": {
       "get": {
-        "description": "",
+        "tags": [
+          "Categories"
+        ],
+        "summary": "List Category",
+        "description": "\r  You can send query with endpoint for search[], sort[], page and limit.\r  <ul> Examples:\r   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>\r   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>\r   <li>URL/?<b>page=2&limit=1</b></li>\r  </ul>\r  ",
         "responses": {
           "200": {
             "description": "OK"
@@ -167,7 +227,21 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Create Category",
+        "description": "Look to <b>'Models/Blog'</b> for parameters.",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Category"
+            }
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
@@ -177,6 +251,10 @@
     },
     "/api/categories/{id}": {
       "get": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Get Single Category",
         "description": "",
         "parameters": [
           {
@@ -193,6 +271,10 @@
         }
       },
       "put": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Update Category",
         "description": "",
         "parameters": [
           {
@@ -200,6 +282,15 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
           }
         ],
         "responses": {
@@ -209,6 +300,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Delete Category",
         "description": "",
         "parameters": [
           {
@@ -228,24 +323,10 @@
         }
       },
       "patch": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+        "tags": [
+          "Categories"
         ],
-        "responses": {
-          "202": {
-            "description": "Accepted"
-          }
-        }
-      }
-    },
-    "/api/comments/{id}": {
-      "post": {
+        "summary": "Update Category",
         "description": "",
         "parameters": [
           {
@@ -257,16 +338,40 @@
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "properties": {
-                "user": {
-                  "example": "any"
-                },
-                "post": {
-                  "example": "any"
-                }
-              }
+              "properties": {}
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
+    },
+    "/api/comments/{id}": {
+      "post": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Create Comment",
+        "description": "Look to <b>'Models/Comment'</b> for parameters.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Comment"
             }
           }
         ],
@@ -277,6 +382,10 @@
         }
       },
       "put": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Update Comment",
         "description": "",
         "parameters": [
           {
@@ -284,6 +393,15 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
           }
         ],
         "responses": {
@@ -293,6 +411,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Comments"
+        ],
+        "summary": "Delete Comment",
         "description": "",
         "parameters": [
           {
@@ -314,7 +436,11 @@
     },
     "/api/blogs": {
       "get": {
-        "description": "",
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "List Blogs",
+        "description": "\r  You can send query with endpoint for search[], sort[], page and limit.\r  <ul> Examples:\r   <li>URL/?<b>search[field1]=value1&search[field2]=value2</b></li>\r   <li>URL/?<b>sort[field1]=1&sort[field2]=-1</b></li>\r   <li>URL/?<b>page=2&limit=1</b></li>\r  </ul>\r  ",
         "responses": {
           "200": {
             "description": "OK"
@@ -322,18 +448,18 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "Create Blog",
+        "description": "Look to <b>'Models/Blog'</b> for parameters.",
         "parameters": [
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
-              "type": "object",
-              "properties": {
-                "author": {
-                  "example": "any"
-                }
-              }
+              "$ref": "#/definitions/Blog"
             }
           }
         ],
@@ -346,6 +472,10 @@
     },
     "/api/blogs/{id}": {
       "get": {
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "Get Single Blog",
         "description": "",
         "parameters": [
           {
@@ -362,6 +492,10 @@
         }
       },
       "put": {
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "Update Blog",
         "description": "",
         "parameters": [
           {
@@ -369,6 +503,15 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
           }
         ],
         "responses": {
@@ -378,6 +521,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "Blogs"
+        ],
+        "summary": "Delete Blog",
         "description": "",
         "parameters": [
           {
@@ -397,24 +544,10 @@
         }
       },
       "patch": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+        "tags": [
+          "Blogs"
         ],
-        "responses": {
-          "202": {
-            "description": "Accepted"
-          }
-        }
-      }
-    },
-    "/api/likes/{id}": {
-      "post": {
+        "summary": "Update Blog",
         "description": "",
         "parameters": [
           {
@@ -426,16 +559,40 @@
           {
             "name": "body",
             "in": "body",
+            "required": true,
             "schema": {
               "type": "object",
-              "properties": {
-                "user_id": {
-                  "example": "any"
-                },
-                "post_id": {
-                  "example": "any"
-                }
-              }
+              "properties": {}
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "Accepted"
+          }
+        }
+      }
+    },
+    "/api/likes/{id}": {
+      "post": {
+        "tags": [
+          "Likes"
+        ],
+        "summary": "Create Likes",
+        "description": "Look to <b>'Models/Like'</b> for parameters.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Like"
             }
           }
         ],
