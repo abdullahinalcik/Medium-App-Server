@@ -55,7 +55,41 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/User"
+              "type": "object",
+              "properties": {
+                "username": {
+                  "type": "string",
+                  "example": "admin"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "aA?123456"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "admin@site.com"
+                },
+                "first_name": {
+                  "type": "string",
+                  "example": "admin"
+                },
+                "last_name": {
+                  "type": "string",
+                  "example": "admin"
+                },
+                "image": {
+                  "type": "string",
+                  "example": ""
+                },
+                "bio": {
+                  "type": "string",
+                  "example": ""
+                },
+                "isAdmin": {
+                  "type": "boolean",
+                  "example": true
+                }
+              }
             }
           }
         ],
@@ -509,8 +543,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {}
+              "$ref": "#/definitions/Blog"
             }
           }
         ],
@@ -561,8 +594,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "type": "object",
-              "properties": {}
+              "$ref": "#/definitions/Blog"
             }
           }
         ],

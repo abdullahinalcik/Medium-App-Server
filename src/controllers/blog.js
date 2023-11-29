@@ -146,6 +146,7 @@ app.get('/blogs/:id', async (req, res) => {
                 in: 'body',
                 required: true,
                 schema: {
+                  $ref: '#/definitions/Blog'
                 }
             }
         

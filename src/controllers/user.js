@@ -9,8 +9,7 @@ const passwordEncrypt = require("../helpers/passwordEncrypt");
 
 module.exports = {
   list: async (req, res) => {
-
-        /*
+    /*
              #swagger.tags = ['Users']
               #swagger.summary = "List Users"
             #swagger.description = `
@@ -38,22 +37,30 @@ module.exports = {
     /*
              #swagger.tags = ['Users']
              #swagger.summary = "Create User"
-            #swagger.parameters['body'] = {
+             #swagger.parameters['body'] = {
                 in: 'body',
                 required: true,
                 schema: {
-                    $ref: '#/definitions/User'
-                }
+                "username": "admin",
+               "password": "aA?123456",
+               "email": "admin@site.com",
+               "first_name": "admin",
+                "last_name": "admin",
+              "image":"",
+              "bio":"",
+             "isAdmin": true
+}
             }
         
         */
 
     const user = await User.create(req.body);
-    
 
     // register
-    const tokenData = await Token.create({user_id: user._id,token: passwordEncrypt(user._id + Date.now())});
-
+    const tokenData = await Token.create({
+      user_id: user._id,
+      token: passwordEncrypt(user._id + Date.now()),
+    });
 
     user._doc.id = user._id;
     user._doc.token = tokenData.token;
