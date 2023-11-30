@@ -11,7 +11,7 @@
     "last_name": "admin",
     "image":"",
     "bio":"",
-    "isAdmin": true
+    "isAdmin": false
 }
 /* ------------------------------------------------------- */
 const { Schema, model } = require('mongoose')

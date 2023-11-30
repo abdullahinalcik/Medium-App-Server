@@ -15,7 +15,7 @@ const document = {
 		version: packageJson.version,
 		title: packageJson.title,
 		description: packageJson.description,
-		termsOfService: "http://www.clarusway.com",
+		termsOfService: "https://github.com/abdullahinalcik",
 		contact: { name: packageJson.author, email: "a.inalcik@gmail.com" },
 		license: { name: packageJson.license, },
 	},

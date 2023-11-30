@@ -59,23 +59,23 @@
               "properties": {
                 "username": {
                   "type": "string",
-                  "example": "admin"
+                  "example": "required"
                 },
                 "password": {
                   "type": "string",
-                  "example": "aA?123456"
+                  "example": "required"
                 },
                 "email": {
                   "type": "string",
-                  "example": "admin@site.com"
+                  "example": "required"
                 },
                 "first_name": {
                   "type": "string",
-                  "example": "admin"
+                  "example": "required"
                 },
                 "last_name": {
                   "type": "string",
-                  "example": "admin"
+                  "example": "required"
                 },
                 "image": {
                   "type": "string",
@@ -87,7 +87,7 @@
                 },
                 "isAdmin": {
                   "type": "boolean",
-                  "example": true
+                  "example": false
                 }
               }
             }

@@ -41,19 +41,28 @@ module.exports = {
                 in: 'body',
                 required: true,
                 schema: {
-                "username": "admin",
-               "password": "aA?123456",
-               "email": "admin@site.com",
-               "first_name": "admin",
-                "last_name": "admin",
-              "image":"",
-              "bio":"",
-             "isAdmin": true
-}
-            }
+    "username": "admin",
+    "password": "aA?123456",
+    "email": "admin@site.com",
+    "first_name": "admin",
+    "last_name": "admin",
+    "image":"",
+    "bio":"",
+    "isAdmin": false
+}}
         
         */
-
+/*{
+    "username": "required",
+    "password": "required",
+    "email": "required",
+    "first_name": "required",
+    "last_name": "required",
+    "image":"",
+    "bio":"",
+    "isAdmin": false
+}
+            */
     const user = await User.create(req.body);
 
     // register
